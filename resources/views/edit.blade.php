@@ -33,13 +33,18 @@
                             <div class="mb-3">
                                 <label class="form-label">Category</label>
                                 <select class="form-control" name="category_id" value="Select category">
-                                    <option value="">Some</option>
-                                    <option value="">Sometwo</option>
+                                    <option value="">Select category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ $post->category_id == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Update Post</button>
+                        <a class="btn btn-danger" href="/posts">Back</a>
                     </div>
                     </form>
                 </div>

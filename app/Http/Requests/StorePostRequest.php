@@ -26,6 +26,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => 'required|unique:posts|max:255',
             'content' => 'required',
+            'category_id' => 'required'
         ];
     }
 }

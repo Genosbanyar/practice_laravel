@@ -28,7 +28,8 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $categories = Category::all();
+        return view('create',compact('categories'));
     }
 
     /**
@@ -39,10 +40,8 @@ class HomeController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        Post::create([
-            'title'=>$request->title,
-            'content'=>$request->content
-        ]);
+        $validated = $request->validated();
+        Post::create($validated);
         return redirect('/posts');
     }
 
@@ -65,7 +64,8 @@ class HomeController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('edit',compact('post'));
+        $categories = Category::all();
+        return view('edit',compact('post','categories'));
     }
 
     /**
@@ -77,10 +77,8 @@ class HomeController extends Controller
      */
     public function update(StorePostRequest $request, Post $post)
     {
-        $post->update([
-            'title'=>$request->title,
-            'content'=>$request->content
-        ]);
+        $validated = $request->validated();
+        $post->update($validated);
         return redirect('/posts');
     }
 

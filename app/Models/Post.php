@@ -12,7 +12,7 @@ class Post extends Model
 
     public function category()
     {
-    return $this->belongsTo(Category::class, 'foreign_key');
+    return $this->belongsTo(Category::class, 'category_id');
     }
     protected $table = 'posts';
 }
